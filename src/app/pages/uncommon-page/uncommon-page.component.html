@@ -1,0 +1,53 @@
+
+<section class="mt-4 ml-4 ">
+  <h1 class="text-3xl font-bold">Pipes no tan comunes pero poderosos...</h1>
+</section>
+
+<div class="mt-4 ml-4 flex gap-5 flex-wrap">
+  <app-card [title]="'18nSelectPipe'">
+
+    <p>hola desde el padre</p>
+
+
+    <p>Hola que tal {{ client().name }}, {{ client().gender | i18nSelect: invitationMap }}</p>
+    <p>{{ gatos().length | i18nPlural: catsMap() }}</p>
+
+    <button class="btn btn-primary" (click)="changeClient()">Cambiar cliente</button>
+    <button class="btn btn-primary" (click)="deleteCat()" [disabled]="gatos().length === 0">Eliminar gato</button>
+
+  </app-card>
+
+  <app-card [title]="'Slicepipe'">
+    <p class="font-bold text-2xl">
+      {{ gatos() }}
+    </p>
+    <b >Slice: {{ gatos() | slice: 0:2 }}</b>
+  </app-card>
+
+  <app-card title="JSON pipe">
+    <pre>{{ gatos() | json }}</pre>
+  </app-card>
+
+  <app-card title="Key value pipe">
+    <!-- <pre>{{profile | keyvalue }}</pre> -->
+
+    @for (person of profile | keyvalue; track $index) {
+
+      <p>{{ person.key }}:{{ person.value }}</p>
+
+    }
+  </app-card>
+
+  <app-card title="Async pipe">
+
+    <!-- se debe manejar el error -->
+    <p>{{ promiseValue | async }}</p>
+
+    <h4> Ahora con observable </h4>
+    <p>{{ myObservableTimer | async }}</p>
+
+  </app-card>
+
+</div>
+
+
