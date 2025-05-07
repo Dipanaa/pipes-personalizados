@@ -30,6 +30,7 @@ export default class UncommonPageComponent {
   gatos = signal<string[]>(cats);
 
 
+
   //Configuracion i18n plural
 
   catsMap = signal({
