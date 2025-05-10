@@ -15,7 +15,17 @@
 <div class="divider my-2"></div>
 <h1 class="p-2 text-3xl font-bold">Tabla de contenido para pipes personalizados</h1>
 
+
+
+
 <section class="flex flex-row w-full my-2 gap-2 justify-end items-center">
+  <input type="text" class="input input-bordered max-w-xs self-start" placeholder="Buscar heroes"
+  #txtSearch
+  (input)="search.set(txtSearch.value)"
+  >
+
+   <div class="flex flex-1"></div>
+
   <button (click)="sortBy.set('name')" class="btn btn-primary md:btn-md btn-sm">Por nombre</button>
   <button (click)="sortBy.set('canFly')" class="btn btn-secondary sm:btn-md btn-sm">Por volar</button>
   <button (click)="sortBy.set('color')" class="btn btn-success sm:btn-md btn-sm">Por color</button>
@@ -39,7 +49,7 @@
     <tbody>
       <!-- row 1 -->
 
-      @for (hero of heroes() | heroSortBy: sortBy(); track $index) {
+      @for (hero of heroes() | heroFilter: search() |  heroSortBy: sortBy() ; track $index) {
 
         <tr>
           <th>{{hero.id}}</th>

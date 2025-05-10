@@ -7,10 +7,12 @@ import { heroColorPipe } from '../../pipes/heroColor.pipe';
 import { HeroTextColorPipe } from '../../pipes/heroTextColor.pipe';
 import { HeroCreatorPipe } from '../../pipes/heroCreator.pipe';
 import { HeroSortByPipe } from '../../pipes/heroSortBy.pipe';
+import { HeroFilterPipe } from '../../pipes/heroFilter.pipe';
 
 @Component({
   selector: 'app-custom-page',
-  imports: [ToggleCasePipe,CanFlyPipe,heroColorPipe,HeroTextColorPipe,HeroCreatorPipe,HeroSortByPipe],
+  imports: [ToggleCasePipe,CanFlyPipe,heroColorPipe,HeroTextColorPipe
+    ,HeroCreatorPipe,HeroSortByPipe,HeroFilterPipe],
   templateUrl: './custom-page.component.html',
 
 })
@@ -31,6 +33,11 @@ export default class CustomPageComponent {
 
   //Signal para data de heroes
   heroes = signal<Hero[]>(heroes);
+
+  //Search para el input
+  search = signal<string>("");
+
+
 
   //Metodo para el toggle
   toggleValue(){
